@@ -1,13 +1,44 @@
 import React from 'react'
+import Swal from 'sweetalert2'
 
 const Contact = () => {
+
+
+ 
+    const onSubmit = async (event) => {
+      event.preventDefault();
+      const formData = new FormData(event.target);
+  
+      formData.append("access_key", "f7d14d14-5055-457f-ab30-0e5a949dc3d2");
+  
+      const object = Object.fromEntries(formData);
+      const json = JSON.stringify(object);
+  
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: json
+      }).then((res) => res.json());
+  
+      if (res.success) {
+        Swal.fire({
+          title: "Success!",
+          text: "Your message sent successfully!",
+          icon: "success"
+        });
+      }
+    };
+
   return (
     <div id='contact'className='flex min-h-screen w-full flex-col
     items-center justify-center gap-16 p-8'>
         <h1 className='text-center lg:text-5xl font-light
         text-teal-600'>Get In Touch</h1>
 
-        <form className='flex w-full max-w-md flex-col
+        <form onSubmit={onSubmit} className='flex w-full max-w-md flex-col
         gap-8 rounded-lg p-6 md:max-w-lg lg:max-w-xl'>
 
             <div className="flex flex-col gap-4">
@@ -15,24 +46,24 @@ const Contact = () => {
                 className='rounde-lg- border-2 border-teal-400
                 px-4 py-3 text-lg outline-none transition-all
                 duration-200 hover:bg-teal-50 focus:ring-2
-                focus:ring-teal-500' />
+                focus:ring-teal-500'name='firstName' required/>
 
                 <input type="text" placeholder='Your Surname'
                 className='rounde-lg- border-2 border-teal-400
                 px-4 py-3 text-lg outline-none transition-all
                 duration-200 hover:bg-teal-50 focus:ring-2
-                focus:ring-teal-500' />
+                focus:ring-teal-500'name='lastName' required/>
 
                 <input type="text" placeholder='Your Email'
                 className='rounde-lg- border-2 border-teal-400
                 px-4 py-3 text-lg outline-none transition-all
                 duration-200 hover:bg-teal-50 focus:ring-2
-                focus:ring-teal-500' />
+                focus:ring-teal-500' name='email' required/>
 
 
             </div>
 
-            <textarea placeholder='Your Message' className='h-32 w-full
+            <textarea name='message' placeholder='Your Message' className='h-32 w-full
             resize-none rounded-lg border-2 border-teal-400
                 px-4 py-3 text-lg outline-none transition-all
                 duration-200 hover:bg-teal-50 focus:ring-2
