@@ -8,7 +8,11 @@ const Contact = () => {
     const onSubmit = async (event) => {
       event.preventDefault();
       const formData = new FormData(event.target);
-  
+      // Go to [https://web3forms.com/#start](https://web3forms.com/#start) and 
+      // create an access key using your email. Then, replace the access 
+      // key value in the code below with your generated key.
+      // After that, you will receive every submitted 
+      // messages in your email.
       formData.append("access_key", "f7d14d14-5055-457f-ab30-0e5a949dc3d2");
   
       const object = Object.fromEntries(formData);
@@ -35,7 +39,8 @@ const Contact = () => {
   return (
     <div id='contact'className='flex min-h-screen w-full flex-col
     items-center justify-center gap-16 p-8'>
-        <h1 className='text-center lg:text-5xl font-light
+        <h1 className='text-center text-3xl sm:text-4xl md:text-5xl 
+        lg:text-6xl font-light
         text-teal-600'>Get In Touch</h1>
 
         <form onSubmit={onSubmit} className='flex w-full max-w-md flex-col

@@ -7,7 +7,7 @@ import Contact from "./Components/Contact";
 function App() {
   return (
     <>
-      <div className="flex min-h-screen w-full subpixel-antialiased">
+      <div className="flex min-h-screen w-full subpixel-antialiased bg-teal-100">
         <HeaderLeft />
 
         <main className="flex-[3]">
